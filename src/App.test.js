@@ -15,6 +15,13 @@ describe('tet App component', () => {
     });
   });
 
+  describe('clearing form', () => {
+    it('clear button click', () => {
+      app.find('Button').at(1).simulate('click');
+      expect(app.state().notes).toEqual([]);
+    });
+  });
+
   describe('App form behaviour', () => {
     let testNote = 'this is a test note';
     beforeEach(() => {
@@ -31,6 +38,16 @@ describe('tet App component', () => {
         app.find('Button').at(0).simulate('click');
         console.log(app.state());
         expect(app.state().notes).toEqual([{text: testNote}]);
+    });
+
+    describe('remounting another component ', () => {
+      let app2;
+        beforeEach(() => {
+          app2 = mount(<App />);
+        });
+        it('test cookie', () => {
+          expect(app2.state().notes).toEqual([{text: testNote}])
+        });
     });
   });
 })

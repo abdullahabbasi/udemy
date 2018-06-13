@@ -25,6 +25,7 @@ class App extends Component {
     const notes = read_cookie(COOKIE_KEY);
     this.setState({notes});
   }
+
   clearNotes() {
     delete_cookie(COOKIE_KEY);
     this.setState({notes: []});
